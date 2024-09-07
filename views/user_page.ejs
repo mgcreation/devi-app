@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devi Mobiles</title>
+    <link rel="stylesheet" href="style.css">    
+</head>
+<style>
+    /* Gradient background for the entire page */
+    body {
+        background: linear-gradient(135deg, #9d61dd 0%, #193b75 100%);
+        margin: 0;
+        font-family: Arial, sans-serif;
+        color: white;
+    }
+
+    header, footer {
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        color: white;
+        text-align: center;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .oval-button {
+        background-color: #007bff;
+        color: white;
+        padding: 15px 30px;
+        border-radius: 50px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: none;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        flex: 1;
+        margin: 0 10px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .oval-button:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    .oval-button:first-child {
+        margin-left: 0;
+    }
+
+    .oval-button:last-child {
+        margin-right: 0;
+    }
+
+    .info-container {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 18px;
+    }
+
+    /* Increase space between main content and footer */
+    main {
+        padding-bottom: 280px; /* Adjust the value to increase or decrease the space */
+        
+    }
+</style>
+
+<body>
+    <header><br><br>
+        <h1>DEVI MOBILES</h1>
+        <br><br>
+    </header>
+
+    <main>
+        <div class="info-container">
+            <p style="font-size: 24px;" id="dateTime"></p>
+            <br>
+            <p style="font-size: 24px;">Welcome , <%= user %> !</p>
+        </div>
+        <br><br>
+        <div class="button-container">
+            <a href="#" class="oval-button">SALES</a>
+            <!--<a href="service.ejs" class="oval-button">SERVICE</a>-->
+            <a href="/service" class="oval-button">SERVICE</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Devi Mobiles</p>
+    </footer>
+
+    <script>
+        function updateDateTime() {
+            const now = new Date();
+            const dateTimeString = now.toLocaleString();
+            document.getElementById('dateTime').textContent = dateTimeString;
+        }
+
+        updateDateTime();
+
+        setInterval(updateDateTime, 1000);
+    </script>
+</body>
+</html>

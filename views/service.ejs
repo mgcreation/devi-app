@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Two Column Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            margin: 0;
+            height: 100vh;
+            background: linear-gradient(135deg, #9d61dd 0%, #193b75 100%);
+
+        }
+
+        .container {
+            display: flex;
+            width: 100%;
+        }
+
+        .sidebar {
+            width: 25%;
+            background-color: #f4f4f4;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .content {
+            width: 75%;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .option {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .option:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar"><br>
+            <h1> <center>Devi Mobiles</center></h1>
+            <br><br><br>
+            <div class="option" onclick="loadContent('page1')">ADD SERVICE</div>
+            <br><br>
+            <div class="option" onclick="loadContent('page2')">EDIT SERVICE</div>
+            <br><br>
+            <div class="option" onclick="loadContent('page3')">CLOSE SERVICE</div>
+        </div>
+        <div class="content" id="content-area">
+            <%- include('partials/page1') %>
+        </div>
+    </div>
+</body>
+    <script>
+        function loadContent(page) {
+            fetch('/load/' + page)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('content-area').innerHTML = html;
+                });
+        }
+    </script>
+</body>
+</html>

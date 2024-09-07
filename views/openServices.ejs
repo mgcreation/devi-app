@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Open Services</title>
+</head>
+<body>
+    <h1>Open Services</h1>
+    <ul>
+        <% services.forEach(service => { %>
+            <li>
+                <a href="/services/<%= service.serviceId %>">
+                    Service ID: <%= service.serviceId %>
+                </a>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>

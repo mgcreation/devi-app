@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Service Details - <%= service.serviceId %></title>
+</head>
+<body>
+    <h1>Service Details for ID: <%= service.serviceId %></h1>
+    <form action="/services/<%= service.serviceId %>/edit" method="POST">
+        <div>
+            <label for="details">Details:</label>
+            <textarea id="details" name="details"><%= service.details %></textarea>
+        </div>
+        <div>
+            <label for="amount">Amount:</label>
+            <input type="text" id="amount" name="amount" value="<%= service.amount %>">
+        </div>
+        <button type="submit">Update Service</button>
+    </form>
+</body>
+</html>

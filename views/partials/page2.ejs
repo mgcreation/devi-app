@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Records</title>
+</head>
+<body>
+    <h1>Service Records</h1>
+
+    <ul>
+        <% openServices.forEach(function(record) { %>
+            <li>
+                <strong>Service ID:</strong> <%= record.service_id %><br>
+                <strong>Customer Name:</strong> <%= record.customer_name %><br>
+                <strong>Phone Model:</strong> <%= record.model %><br>
+            </li>
+            <hr>
+        <% }) %>
+    </ul>
+
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Devi Mobiles</title>
+    <style>
+        /* Your styles here */
+        .receipt {
+            border: 1px solid #333;
+            padding: 20px;
+            width: 300px;
+            margin: 20px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <center><h1>ADD SERVICE RECORD</h1></center>
+    <form action="/addServiceRecord" method="POST">
+        <div class="personal-info-section">
+            <div class="form-group">
+                <label for="customerName">Customer Name:</label>
+                <input type="text" id="customerName" name="customerName" class="form-control" required />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="emailId">Email:</label>
+                <input type="email" id="emailId" name="emailId" class="form-control" required />
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="contactNumber">Contact Number:</label>
+                <input type="text" id="contactNumber" name="contactNumber" class="form-control" required onblur="validateContactNumber()" />
+                <span id="contactNumberError"></span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" class="form-control" />
+            </div>
+            <br>
+        </div>
+        
+        <div class="contact-info-section">
+            <div class="form-group">
+                <label for="phoneCompany">Phone Company:</label>
+                <input type="text" id="phoneCompany" name="phoneCompany" class="form-control" required />
+                &nbsp;&nbsp;
+                <label for="phoneModel">Phone Model:</label>
+                <input type="text" id="phoneModel" name="phoneModel" class="form-control" required />
+            </div>
+        </div>
+        <br>
+        <div class="device-info-section">
+            <div class="form-group">
+                <label for="natureOfFault">Nature of Fault:</label>
+                <input type="text" id="natureOfFault" name="natureOfFault" class="form-control" required />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <label for="estimateCost">Estimated Cost:</label>
+                <input type="text" id="estimateCost" name="estimateCost" class="form-control" required />
+            </div>
+        </div>
+        <br><br>
+        <div class="check-buttons-section">
+            <div class="form-check">
+                <input type="checkbox" id="simHandled" name="simHandled" class="form-check-input" />
+                <label for="simHandled" class="form-check-label">SIM Handed</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="simTrayHandled" name="simTrayHandled" class="form-check-input" />
+                <label for="simTrayHandled" class="form-check-label">SIM Tray Handed</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="memoryCardAvailable" name="memoryCardAvailable" class="form-check-input" />
+                <label for="memoryCardAvailable" class="form-check-label">Memory Card Available</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="batteryAvailable" name="batteryAvailable" class="form-check-input" />
+                <label for="batteryAvailable" class="form-check-label">Battery Available</label>
+            </div>
+            <div class="form-check">
+                <input type="checkbox" id="pouchAvailable" name="pouchAvailable" class="form-check-input" />
+                <label for="pouchAvailable" class="form-check-label">Pouch Available</label>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <br><br><center>
+            <button type="submit" class="btn btn-primary">Add Service</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </center>
+        </div>
+
+    </form>
+
+    <script>
+        document.getElementById('serviceForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+
+            fetch('/addServiceRecord', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                // Open a new small, borderless window for the receipt
+                const receiptWindow = window.open("", "Receipt", "width=400,height=400,scrollbars=no,menubar=no,toolbar=no,location=no,status=no,resizable=no");
+                receiptWindow.document.write(data);
+                receiptWindow.document.close();
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Receipt</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .receipt {
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #333;
+            width: 300px;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        /* Print-specific styles */
+        @media print {
+            button {
+                display: none; /* Hide buttons when printing */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="receipt">
+        <h1>Service Receipt</h1>
+        <p><strong>Service ID:</strong> <%= service_id %></p>
+        <p><strong>Customer Name:</strong> <%= customer_name %></p>
+        <p><strong>Phone Model:</strong> <%= model %></p>
+        <button onclick="printReceipt()">Print</button>
+        <button onclick="closeWindow()">Close</button>
+    </div>
+
+    <script>
+        function printReceipt() {
+            window.print();
+        }
+
+        function closeWindow() {
+            if (window.opener) {
+                // If the window was opened as a popup, close it
+                window.close();
+            } else {
+                // If not, navigate back and refresh
+                window.location.href = document.referrer;
+            }
+        }
+    </script>
+</body>
+</html>
